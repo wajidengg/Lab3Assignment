@@ -202,10 +202,15 @@ public class MainFrame extends javax.swing.JFrame {
         if(!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", emailTextField.getText()))) {
             JOptionPane.showMessageDialog(null, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
         } 
-        else if(!(Pattern.matches("([^\\\\s]+(\\\\.(?i)(jpe?g|png|gif|bmp))$)", photoTextField.getText()))){
+        else if(!(Pattern.matches("([^\\s]+(\\.(?i)(jpe?g|png|gif|bmp))$)", photoTextField.getText()))){
             JOptionPane.showMessageDialog(null, "Please select a valid photo", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+        else if(!(Pattern.matches("([^\\s]+$)", fnameTextField.getText()))){
+            JOptionPane.showMessageDialog(null, "Please enter a valid first name", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(!(Pattern.matches("([^\\s]+$)", lnameTextField.getText()))){
+            JOptionPane.showMessageDialog(null, "Please enter a valid last name", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         else {
             JOptionPane.showMessageDialog(this, "First Name: " +fname+ "\nLast Name: " +lname+ "\nAge: " +age+ "\nEmail: " +email+ "\nMessage: \n" +message, 
                 "User Data", JOptionPane.INFORMATION_MESSAGE, icon);
