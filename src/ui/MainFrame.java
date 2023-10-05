@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
+// import java.awt.Graphics2D;
+// import java.awt.RenderingHints;
+// import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.regex.Pattern;
 import javax.swing.*;
@@ -53,7 +53,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 51));
 
-        mainPanel.setBackground(new java.awt.Color(255, 255, 102));
+        mainPanel.setBackground(new java.awt.Color(255, 255, 153));
 
         titleLabel.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -100,6 +100,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        submitButton.setBackground(new java.awt.Color(153, 204, 255));
         submitButton.setText("Submit");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,17 +200,20 @@ public class MainFrame extends javax.swing.JFrame {
         // System.out.println(fname+ " " +lname+ " " +age+ " " +email);
         // System.out.println(message);
         ImageIcon icon = new ImageIcon(uploadImage);
-        if(!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", emailTextField.getText()))) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
-        } 
-        else if(!(Pattern.matches("([^\\s]+(\\.(?i)(jpe?g|png|gif|bmp))$)", photoTextField.getText()))){
-            JOptionPane.showMessageDialog(null, "Please select a valid photo", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else if(!(Pattern.matches("([^\\s]+$)", fnameTextField.getText()))){
+        if(!(Pattern.matches("([^\\s]+$)", fnameTextField.getText()))){
             JOptionPane.showMessageDialog(null, "Please enter a valid first name", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else if(!(Pattern.matches("([^\\s]+$)", lnameTextField.getText()))){
             JOptionPane.showMessageDialog(null, "Please enter a valid last name", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(!(Pattern.matches("([^\\s]+$)", ageTextField.getText()))){
+            JOptionPane.showMessageDialog(null, "Please enter a valid number", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", emailTextField.getText()))) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
+        } 
+        else if(!(Pattern.matches("([^\\s]+(\\.(?i)(jpe?g|png|gif|bmp))$)", photoTextField.getText()))){
+            JOptionPane.showMessageDialog(null, "Please select a valid photo", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else {
             JOptionPane.showMessageDialog(this, "First Name: " +fname+ "\nLast Name: " +lname+ "\nAge: " +age+ "\nEmail: " +email+ "\nMessage: \n" +message, 
