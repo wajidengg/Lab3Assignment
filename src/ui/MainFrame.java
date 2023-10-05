@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.regex.Pattern;
 import javax.swing.*;
 
 /**
@@ -69,6 +70,24 @@ public class MainFrame extends javax.swing.JFrame {
         messageLabel.setText("Message:");
 
         photoLabel.setText("Photo:");
+
+        fnameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fnameTextFieldKeyPressed(evt);
+            }
+        });
+
+        lnameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lnameTextFieldKeyPressed(evt);
+            }
+        });
+
+        ageTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ageTextFieldKeyPressed(evt);
+            }
+        });
 
         messageTextBox.setColumns(20);
         messageTextBox.setRows(5);
@@ -180,9 +199,16 @@ public class MainFrame extends javax.swing.JFrame {
         // System.out.println(fname+ " " +lname+ " " +age+ " " +email);
         // System.out.println(message);
         ImageIcon icon = new ImageIcon(uploadImage);
-        // JOptionPane.showMessageDialog(this, fname+ " " +lname+ " " +age+ " " +email+ " " +message, JOptionPane.INFORMATION_MESSAGE, icon);
-        JOptionPane.showMessageDialog(this, "First Name: " +fname+ "\nLast Name: " +lname+ "\nAge: " +age+ "\nEmail: " +email+ "\nMessage: \n" +message, 
+        
+        if(!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", emailTextField.getText()))) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "First Name: " +fname+ "\nLast Name: " +lname+ "\nAge: " +age+ "\nEmail: " +email+ "\nMessage: \n" +message, 
                 "User Data", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+       
+        // JOptionPane.showMessageDialog(this, fname+ " " +lname+ " " +age+ " " +email+ " " +message, JOptionPane.INFORMATION_MESSAGE, icon);
+        
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void photoUploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoUploadButtonActionPerformed
@@ -194,6 +220,36 @@ public class MainFrame extends javax.swing.JFrame {
         photoTextField.setText(filename);
         
     }//GEN-LAST:event_photoUploadButtonActionPerformed
+
+    private void fnameTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fnameTextFieldKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)){
+            fnameTextField.setEditable(true);
+        } else{
+            fnameTextField.setEditable(false);
+        }
+    }//GEN-LAST:event_fnameTextFieldKeyPressed
+
+    private void lnameTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lnameTextFieldKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)){
+            lnameTextField.setEditable(true);
+        } else{
+            lnameTextField.setEditable(false);
+        }
+    }//GEN-LAST:event_lnameTextFieldKeyPressed
+
+    private void ageTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ageTextFieldKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(Character.isDigit(c) || Character.isISOControl(c) ){
+            ageTextField.setEditable(true);
+        } else{
+            ageTextField.setEditable(false);
+        }
+    }//GEN-LAST:event_ageTextFieldKeyPressed
 
     /**
      * @param args the command line arguments
