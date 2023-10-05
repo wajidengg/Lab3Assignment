@@ -199,10 +199,14 @@ public class MainFrame extends javax.swing.JFrame {
         // System.out.println(fname+ " " +lname+ " " +age+ " " +email);
         // System.out.println(message);
         ImageIcon icon = new ImageIcon(uploadImage);
-        
         if(!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", emailTextField.getText()))) {
             JOptionPane.showMessageDialog(null, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
+        } 
+        else if(!(Pattern.matches("([^\\\\s]+(\\\\.(?i)(jpe?g|png|gif|bmp))$)", photoTextField.getText()))){
+            JOptionPane.showMessageDialog(null, "Please select a valid photo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        else {
             JOptionPane.showMessageDialog(this, "First Name: " +fname+ "\nLast Name: " +lname+ "\nAge: " +age+ "\nEmail: " +email+ "\nMessage: \n" +message, 
                 "User Data", JOptionPane.INFORMATION_MESSAGE, icon);
         }
